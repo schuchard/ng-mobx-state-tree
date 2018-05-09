@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
-import { ITodo, ITodoStore, TodoStore, SHOW_ALL } from './stores/todos.store';
+import { ITodo, ITodoStore, SHOW_ALL } from './stores/todos.store';
+
+import { TodoListStoreService } from './stores/todo-list-store.service';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,8 @@ export class AppComponent {
   title = '';
   todoStore : ITodoStore;
 
-  constructor() {
-    this.todoStore = TodoStore.create({ todos:[], filter:SHOW_ALL });
+  constructor(private TodoStore: TodoListStoreService) {
+    this.todoStore = TodoStore.TodoList.create({ todos:[], filter:SHOW_ALL });
   }
 
   addTodo(){
